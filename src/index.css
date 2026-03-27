@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-zinc-50 text-zinc-900 font-sans antialiased;
+  }
+}
+
+@theme {
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-spin-slow: spin 3s linear infinite;
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e4e4e7;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4d4d8;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+  body {
+    background-color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* Fix for dom-to-image rendering text with borders */
+.exporting-image * {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Re-apply necessary borders for the cards during export */
+.exporting-image .border-red-100 {
+  border: 1px solid #fee2e2 !important;
+}
+.exporting-image .border-zinc-200 {
+  border: 1px solid #e4e4e7 !important;
+}
+.exporting-image .border-t {
+  border-top: 1px solid inherit !important;
+}
+.exporting-image .border-b-2 {
+  border-bottom: 2px solid inherit !important;
+}
+.exporting-image .border-zinc-800 {
+  border-color: #27272a !important;
+}
+.exporting-image .border-red-200 {
+  border-color: #fecaca !important;
+}
+.exporting-image .border-zinc-700 {
+  border-color: #3f3f46 !important;
+}

@@ -36,9 +36,15 @@ clean: ## 清理构建产物和依赖
 docker-build: ## 构建 Docker 镜像
 	docker build -t $(APP_NAME) .
 
-docker-run: ## 运行 Docker 容器 (后台运行，映射到 8080 端口)
+docker-run: ## 运行 Docker 容器 (后台运行，映射端口，并持久化日志)
+	@echo "正在创建日志目录: ./logs"
+	@mkdir -p ./logs
 	@echo "正在启动容器，访问地址: http://localhost:$(PORT)"
-	docker run -d -p $(PORT):80 --name $(APP_NAME) $(APP_NAME)
+	docker run -d \
+		-p $(PORT):80 \
+		--name $(APP_NAME) \
+		-v $(PWD)/logs:/var/log/nginx \
+		$(APP_NAME)
 
 docker-stop: ## 停止并删除 Docker 容器
 	docker stop $(APP_NAME) || true

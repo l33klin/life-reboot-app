@@ -5,7 +5,7 @@
 
 # 变量定义
 APP_NAME = life-reboot-app
-PORT = 8080
+PORT = 15273
 
 help: ## 显示帮助信息
 	@echo "可用命令列表:"
